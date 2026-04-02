@@ -1,0 +1,17 @@
+# Vivado generated files
+*.jou
+*.log
+*.str
+*.wdb
+*.vcd
+
+RISC.cache/
+RISC.hw/
+RISC.ip_user_files/
+RISC.sim/
+RISC.runs/
+RISC.gen/
+
+# OS files
+.DS_Store
+Thumbs.db
