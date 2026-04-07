@@ -1,9 +1,0 @@
-0.7
-2020.2
-Nov  8 2024
-22:36:57
-C:/Users/plk/RISC/RISC.sim/sim_1/behav/xsim/glbl.v,1724786425,verilog,,,,glbl,,uvm,,,,,,
-C:/Users/plk/RISC/rtl/alu.sv,1775124359,systemVerilog,,C:/Users/plk/RISC/tb/alu_tb.sv,,alu,,uvm,,,,,,
-C:/Users/plk/RISC/rtl/registers.sv,1775550695,systemVerilog,,C:/Users/plk/RISC/tb/registers_tb.sv,,register_file,,uvm,,,,,,
-C:/Users/plk/RISC/tb/alu_tb.sv,1775123869,systemVerilog,,,,alu_tb,,uvm,,,,,,
-C:/Users/plk/RISC/tb/registers_tb.sv,1775550834,systemVerilog,,,,register_file_tb,,uvm,,,,,,
