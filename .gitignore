@@ -2,16 +2,21 @@
 *.jou
 *.log
 *.str
-*.wdb
-*.vcd
+
+.cache/
+.hw/
+.ip_user_files/
+.runs/
+.sim/
+.gen/
 
 RISC.cache/
 RISC.hw/
 RISC.ip_user_files/
-RISC.sim/
 RISC.runs/
+RISC.sim/
 RISC.gen/
 
-# OS files
-.DS_Store
-Thumbs.db
+*.wdb
+*.pb
+*.vcd
