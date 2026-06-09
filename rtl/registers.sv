@@ -12,8 +12,11 @@ module register_file (
     output logic [31:0] read_data1,
     output logic [31:0] read_data2
 );
-
-    // 32 registers, each 32 bits
+initial begin
+    for (int i = 0; i < 32; i = i + 1) begin
+        registers[i] = 32'd0;
+    end
+end    // 32 registers, each 32 bits
     logic [31:0] registers [31:0];
 
     // READ operation (combinational)
