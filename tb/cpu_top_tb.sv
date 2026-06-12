@@ -2,57 +2,51 @@
 
 module cpu_tb();
 
-    // Testbench Signals
     logic clk;
     logic reset;
 
-    // Instantiate the Top Module Unit Under Test (UUT)
+    // Instantiate the 3-Stage Pipelined Top Module
     cpu_top uut (
         .clk(clk),
         .reset(reset)
     );
 
-    // Clock Generation: 10ns period (100 MHz clock frequency)
+    // Clock Generation (10ns period)
     always begin
         clk = 1'b0; #5;
         clk = 1'b1; #5;
     end
 
-    // Simulation Setup and Monitor Logic
     initial begin
-        $display("==================================================");
-        $display("   Starting RISC-V 3-Stage Core Baseline Test     ");
-        $display("==================================================");
+        $display("==========================================================================");
+        $display("          RISC-V 3-STAGE PIPELINE CONCURRENCY MONITOR                     ");
+        $display("==========================================================================");
         
-        // Assert reset to initialize the PC and clear pipeline states
         reset = 1'b1;
-        #15; // Hold reset across one full clock edge
+        #15; 
         reset = 1'b0; 
         
-        // Monitor key CPU signals in the Tcl console at every rising edge
-        $display("Time |     PC     | Instruction | ALU Sel | ALU Result | RegWrite");
-        $display("------------------------------------------------------------");
+        // Detailed Pipeline Monitor Headers
+        $display(" Time  |  IF_PC   | ID_Instr | EX_ALU_Sel | EX_ALU_Result | EX_RegWrite");
+        $display("--------------------------------------------------------------------------");
         
-        // Run simulation for a fixed window to observe instructions executing
-        // Adjust the time based on how many instructions are in your program.mem
-        #100;
+        #120; // Run simulation long enough to clear the pipeline depth
         
-        $display("------------------------------------------------------------");
+        $display("--------------------------------------------------------------------------");
         $display("Simulation Complete.");
         $finish;
     end
 
-    // Probe internal signals using hierarchical paths for easier console tracking
+    // Monitor pipeline stages concurrently at every clock edge
     always @(posedge clk) begin
         if (!reset) begin
-            // We use standard $strobe to display signals *after* all assignments settle on the clock edge
-            $strobe("%4t |  %h  |  %h   |   %b  |  %h  |    %b", 
+            $strobe("%6t | %h | %h |    %b    |   %h   |      %b", 
                     $time, 
-                    uut.pc, 
-                    uut.instruction, 
-                    uut.alu_sel, 
-                    uut.alu_result, 
-                    uut.reg_write);
+                    uut.if_pc,          // What is being fetched right now
+                    uut.id_instruction, // What is being decoded right now
+                    uut.ex_alu_sel,     // What operation the ALU is doing right now
+                    uut.ex_alu_result,  // The active ALU output calculation
+                    uut.ex_reg_write);  // Is a write-back happening this cycle?
         end
     end
 
