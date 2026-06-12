@@ -24,11 +24,11 @@ end    // 32 registers, each 32 bits
     assign read_data2 = registers[read_reg2];
 
     // WRITE operation (sequential)
-    always_ff @(posedge clk) begin
-        
-        if (reg_write && write_reg != 5'd0) 
-            registers[write_reg] <= write_data;
-
+   // Change your Register File clock trigger from posedge to negedge:
+always_ff @(negedge clk) begin
+    if (reg_write && write_reg != 5'd0) begin
+        registers[write_reg] <= write_data;
     end
+end
 
 endmodule

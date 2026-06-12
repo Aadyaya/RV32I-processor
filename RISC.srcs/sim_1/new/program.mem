@@ -1,5 +1,5 @@
-// Format: Hexadecimal
-002100b3  // ADD x1, x2, x2  (R-type)
-40310133  // SUB x2, x2, x3  (R-type)
-00510093  // ADDI x1, x2, 5  (I-type)
-001170b3  // AND x1, x2, x1  (R-type)
+// Format: Hexadecimal Machine Code
+00500113  // ADDI x2, x0, 5   (Loads 5 into x2)
+002101b3  // ADD  x3, x2, x2  (x3 = x2 + x2 = 5 + 5 = 10) -> Immediate Hazard on x2!
+003180b3  // SUB  x1, x3, x3  (x1 = x3 - x3 = 10 - 10 = 0) -> Immediate Hazard on x3!
+00208133  // ADD  x2, x1, x2  (x2 = x1 + x2 = 0 + 5 = 5)   -> Immediate Hazard on x1!
