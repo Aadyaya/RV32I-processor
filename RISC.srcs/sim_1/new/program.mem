@@ -1,5 +1,8 @@
-// Format: Hexadecimal Machine Code
-00500113  // ADDI x2, x0, 5   (Loads 5 into x2)
-002101b3  // ADD  x3, x2, x2  (x3 = x2 + x2 = 5 + 5 = 10) -> Immediate Hazard on x2!
-003180b3  // SUB  x1, x3, x3  (x1 = x3 - x3 = 10 - 10 = 0) -> Immediate Hazard on x3!
-00208133  // ADD  x2, x1, x2  (x2 = x1 + x2 = 0 + 5 = 5)   -> Immediate Hazard on x1!
+// Week 4 Complete Core Verification Program
+00f00113  // ADDI x2, x0, 15
+00700193  // ADDI x3, x0, 7
+00310233  // ADD  x4, x2, x3
+403202b3  // SUB  x5, x4, x3
+00c2f313  // ANDI x6, x5, 12
+002343b3  // XOR  x7, x6, x2
+0033a0b3  // SLT  x1, x7, x3
